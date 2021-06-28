@@ -1,5 +1,5 @@
-export default function initiTooltip() {
-  const toolTips = document.querySelectorAll('[data-tooltip]');
+export default function initTooltip() {
+  const tooltips = document.querySelectorAll('[data-tooltip]');
 
   const onMouseMove = {
     handleEvent(event) {
@@ -16,7 +16,7 @@ export default function initiTooltip() {
     },
   };
 
-  function criarTolltipBox(element) {
+  function criarTooltipBox(element) {
     const tooltipBox = document.createElement('div');
     const text = element.getAttribute('aria-label');
     tooltipBox.classList.add('tooltip');
@@ -25,10 +25,8 @@ export default function initiTooltip() {
     return tooltipBox;
   }
 
-  function onMouseOver(event) {
-    const tooltipBox = criarTolltipBox(this);
-    tooltipBox.style.top = `${event.pageY}px`;
-    tooltipBox.style.left = `${event.pageX}px`;
+  function onMouseOver() {
+    const tooltipBox = criarTooltipBox(this);
 
     onMouseMove.tooltipBox = tooltipBox;
     this.addEventListener('mousemove', onMouseMove);
@@ -38,7 +36,7 @@ export default function initiTooltip() {
     this.addEventListener('mouseleave', onMouseLeave);
   }
 
-  toolTips.forEach((item) => {
+  tooltips.forEach((item) => {
     item.addEventListener('mouseover', onMouseOver);
   });
 }
